@@ -43,7 +43,7 @@ From the dataset, can we pinpoint when the so called software fix for the Base T
 Our team determines the following questions are too complex for Tableau and
 require custom scripts to be written.
 
-* (Question)
+* Is there a correlation between port name and delta time? (i.e. could A or B be causing an issue)
 * (Question)
 * (Question)
 * (Question)
