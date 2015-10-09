@@ -9,11 +9,11 @@ Tableau
 # Authors
 
 This report is prepared by
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)
+* [Kari Santos](https://github.com/karisantos)
+* [Heather Witte](https://github.com/hswitte)
+* [Zachary Lamb](https://github.com/ZachLamb)
+* [Fadhil Suhendi](https://github.com/fadhilfath)
+* [Denis Kazakov](https://github.com/94kazakov)
 
 # (Question)
 
@@ -25,7 +25,10 @@ This report is prepared by
 
 # (Question)
 
-(answer)
+From the dataset, can we pinpoint when the so called software fix for the Base Time attribute was implemented?
+
+![screenshot](./week71.jpg)
+![screenshot](./week7_2.jpg)
 
 # (Question)
 

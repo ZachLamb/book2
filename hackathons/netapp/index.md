@@ -8,8 +8,11 @@ like to get some help on.
 Listen to his presentation carefully. Write down the answers to the following
 questions to show your team's understanding of the basics of the problem.
 
+NetApp - Network Appliance
+## 
 ## What is the problem?
 
+Can NetApp use cheaper SSDs?
 
 ## Why is the problem importnat?
 
@@ -28,12 +31,18 @@ Each team gets to ask one question each time. Write down the questions your team
 wanted to ask and the answers you received. If another team happens to ask the
 same question, simply write down the answer you heard.
 
-## (My team's question)
+Understand what's going on with the times
 
 ## (My team's question)
-
+What do the first two time columns measure?
 ## (My team's question)
+Why not use technology based on customer usage?
+## (My team's question)
+Are those times actual timestamps?
 
+That means it talked to Controller A or B 
+
+Distribution of measure times. Serial number vs delta. 
 
 # Approach
 
