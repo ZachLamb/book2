@@ -7,7 +7,7 @@ Practice what you just learned on the FCQ dataset.
 ### Group By
 
 <div style="border:1px grey solid; padding:5px;">
-<button id="viz-college">Gorup By College</button>
+<button id="viz-college">Group By College</button>
 </div>
 
 <div style="border:1px grey solid; padding:5px;">
