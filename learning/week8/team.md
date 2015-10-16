@@ -3,7 +3,7 @@
 Pick one question class and build an exploratory visualization interface for it.
 The question class you pick must have at least three variables that can be changed.
 
-## (Question class)
+## Given a certain state and ambience (romantic,trendy,ect.), what is the rating?
 
 <div style="border:1px grey solid; padding:5px;">
     <div><h5>State</h5>
