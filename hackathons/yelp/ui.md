@@ -1,20 +1,17 @@
-# UI
+# Warmup
 
-Pick one question class and build an exploratory visualization interface for it.
-The question class you pick must have at least three variables that can be changed.
-
-## (Question class)
+## What is the distribution of X in Y order?
 
 <div style="border:1px grey solid; padding:5px;">
-    <div><h5>X</h5>
-        <input id="arg1" type="text" value="something"/>
+    <div><h5>State</h5>
+        <input id="arg1" type="text" value="CO"/>
     </div>
-    <div><h5>Y</h5>
-        <input id="arg2" type="text" value="something"/>
+    <div><h5>Stars (either ascending or descending)</h5>
+        <input id="arg2" type="text" value="ascending"/>
     </div>
-    <div><h5>Z</h5>
-        <input id="arg2" type="text" value="something"/>
-    </div>    
+    <div><h5>Ambience</h5>
+        <input id="arg3" type="text" value="romantic"/>
+    </div>
     <div style="margin:20px;">
         <button id="viz">Vizualize</button>
     </div>
@@ -42,7 +39,7 @@ $.get('http://bigdatahci2015.github.io/data/yelp/yelp_academic_dataset_business.
          console.error(e)
      })
 
-function viz(arg1, arg2, arg3){    
+function viz(arg1, arg2){    
 
     // define a template string
     var tplString = '<g transform="translate(0 ${d.y})"> \
@@ -63,7 +60,7 @@ function viz(arg1, arg2, arg3){
     }
 
     function computeWidth(d, i) {        
-        return i * 20 + 20
+        return d[1].length / 2
     }
 
     function computeY(d, i) {
@@ -74,21 +71,26 @@ function viz(arg1, arg2, arg3){
         return 'red'
     }
 
-    function computeLabel(d, i) {
-        return 'f' + i
-    }
+    var groups = _.groupBy(items, 'stars')
+    console.log('groups', groups)
 
-    // TODO: modify the logic here based on your UI
-    // take the first 20 items to visualize    
-    items = _.take(items, 20)
+    var pairs = _.pairs(groups)
+    console.log('pairs', pairs)
 
-    var viz = _.map(items, function(d, i){                
+    var sortorder = arg2 == 'ascending'? 1 : -1
+    pairsSorted = _.sortBy(pairs, function(d, i) {
+        return d[1].length * sortorder
+        })
+
+    console.log('pairs sorted', pairsSorted)
+
+    var viz = _.map(pairsSorted, function(d, i){                
                 return {
                     x: computeX(d, i),
                     y: computeY(d, i),
                     width: computeWidth(d, i),
                     color: computeColor(d, i),
-                    label: computeLabel(d, i)
+                    label: d[0]
                 }
              })
     console.log('viz', viz)
@@ -103,19 +105,10 @@ function viz(arg1, arg2, arg3){
 }
 
 $('button#viz').click(function(){    
-    var arg1 = 'TODO'
-    var arg2 = 'TODO'
-    var arg3 = 'TODO'    
-    viz(arg1, arg2, arg3)
+    var arg1 = $('input#arg1').val()
+    var arg2 = $('input#arg2').val()
+    var arg3 = $('input#arg3').val()
+    viz(arg1, arg2,arg3)
 })  
 
 {% endscript %}
-
-# Authors
-
-This UI is developed by
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)

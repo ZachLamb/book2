@@ -12,15 +12,25 @@ NetApp - Network Appliance
 ## 
 ## What is the problem?
 
+NetApp needs to know if they can replace their HDD with SSD
+
 Can NetApp use cheaper SSDs?
+
+They might be able to ,but that's the problem that they're working on.
 
 ## Why is the problem importnat?
 
+This affects the profit of their business
 
 ## What dataset has been made available?
 
+data recording server information in three cities where the data warehouses are at
 
 ## What specific questions are being raised?
+
+What is this dataset telling us?
+
+Can I replace the hard drives with cheaper SSD's?
 
 
 # Q/A session
@@ -35,12 +45,17 @@ Understand what's going on with the times
 
 ## (My team's question)
 What do the first two time columns measure?
+
+Answer: First attribute is time started. The second is end time
 ## (My team's question)
 Why not use technology based on customer usage?
-## (My team's question)
-Are those times actual timestamps?
 
-That means it talked to Controller A or B 
+Answer: N/A. Not far along enough in problem to make that decision
+
+## (My team's question)
+When was base time bug fixed?
+
+Answer: A few months ago. Not sure on when
 
 Distribution of measure times. Serial number vs delta. 
 
@@ -51,11 +66,16 @@ plan how your team will tackle this problem.
 
 ## How should the dataset be imported into Tableau?
 
+Answer: As a CSV
 
 ## How should the work be distributed among the team members?
 
+Answer: We will each check different attributes against other attributes
 
 ## What types of charts or visualizations to use to support the answer?
 
+Answer: Whatever works best with the data.
 
 ## What questions may be too complex for Tableau and may require custom scripts to be written?
+
+Answer: Checking the validity of the times.

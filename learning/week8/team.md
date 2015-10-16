@@ -6,14 +6,14 @@ The question class you pick must have at least three variables that can be chang
 ## (Question class)
 
 <div style="border:1px grey solid; padding:5px;">
-    <div><h5>X</h5>
-        <input id="arg1" type="text" value="something"/>
+    <div><h5>State</h5>
+        <input id="arg1" type="text" value="IL"/>
     </div>
-    <div><h5>Y</h5>
-        <input id="arg2" type="text" value="something"/>
+    <div><h5>Ambience</h5>
+        <input id="arg2" type="text" value="hipster"/>
     </div>
-    <div><h5>Z</h5>
-        <input id="arg2" type="text" value="something"/>
+    <div><h5>Ascending or Descending</h5>
+        <input id="arg3" type="text" value="ascending"/>
     </div>    
     <div style="margin:20px;">
         <button id="viz">Vizualize</button>
@@ -44,7 +44,31 @@ $.get('http://bigdatahci2015.github.io/data/yelp/yelp_academic_dataset_business.
          console.error(e)
      })
 
-function viz(arg1, arg2, arg3){    
+function viz(arg1, arg2, arg3){  
+
+
+    filtered =  _.filter(items, function(d){
+        return ( d.state == arg1 && d.attributes && d.attributes.Ambience && d.attributes.Ambience[arg2] )
+        }) 
+    console.log('first filter', filtered[0]);
+    console.log('filtered length', _.size(filtered))
+    var groups = _.groupBy(filtered, "stars")
+    console.log('groups', groups)
+    var pairs = _.pairs(groups)
+    console.log('pairs', pairs)
+        
+    // TODO: sort pairs in the order specified by users
+     var sorted = [];
+    //if ((arg3 == 'asc')||(arg3 == 'ascending')) {
+    if (_.contains(arg3, 'asc')) {
+        sorted = _.sortBy(pairs, function(d){
+                return d[0];
+        });
+    }else {
+        sorted = _(_.sortBy(pairs, function(d){
+                return d[0];
+        })).reverse().value();
+    }
 
     // define a template string
     var tplString = '<g transform="translate(0 ${d.y})"> \
@@ -65,7 +89,7 @@ function viz(arg1, arg2, arg3){
     }
 
     function computeWidth(d, i) {        
-        return i * 20 + 20
+        return d[1].length*5;
     }
 
     function computeY(d, i) {
@@ -77,14 +101,12 @@ function viz(arg1, arg2, arg3){
     }
 
     function computeLabel(d, i) {
-        return 'f' + i
+        return d[0]
     }
 
-    // TODO: modify the logic here based on your UI
-    // take the first 20 items to visualize    
-    items = _.take(items, 20)
+    
 
-    var viz = _.map(items, function(d, i){                
+    var viz = _.map(sorted, function(d, i){                
                 return {
                     x: computeX(d, i),
                     y: computeY(d, i),
@@ -105,9 +127,9 @@ function viz(arg1, arg2, arg3){
 }
 
 $('button#viz').click(function(){    
-    var arg1 = 'TODO'
-    var arg2 = 'TODO'
-    var arg3 = 'TODO'    
+    var arg1 = $('input#arg1').val();
+    var arg2 = $('input#arg2').val();
+    var arg3 = $('input#arg3').val();
     viz(arg1, arg2, arg3)
 })  
 
