@@ -56,10 +56,9 @@ function viz(arg1, arg2, arg3){
     console.log('groups', groups)
     var pairs = _.pairs(groups)
     console.log('pairs', pairs)
-        
-    // TODO: sort pairs in the order specified by users
+
+
      var sorted = [];
-    //if ((arg3 == 'asc')||(arg3 == 'ascending')) {
     if (_.contains(arg3, 'asc')) {
         sorted = _.sortBy(pairs, function(d){
                 return d[0];
@@ -138,8 +137,8 @@ $('button#viz').click(function(){
 # Authors
 
 This UI is developed by
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)
+* [Kari Santos](https://github.com/karisantos)
+* [Heather Witte](https://github.com/hswitte)
+* [Zachary Lamb](https://github.com/ZachLamb)
+* [Fadhil Suhendi](https://github.com/fadhilfath)
+* [Denis Kazakov](https://github.com/94kazakov)

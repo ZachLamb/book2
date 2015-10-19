@@ -68,7 +68,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1.2.1" data-basepath="../.." data-revision="Fri Oct 16 2015 14:22:45 GMT-0600 (MDT)">
+    <div class="book" data-level="1.2.1" data-basepath="../.." data-revision="Sun Oct 18 2015 21:00:19 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -513,10 +513,9 @@ function viz(arg1, arg2, arg3){
     console.log(&apos;groups&apos;, groups)
     var pairs = _.pairs(groups)
     console.log(&apos;pairs&apos;, pairs)
-        
-    // TODO: sort pairs in the order specified by users
+
+
      var sorted = [];
-    //if ((arg3 == &apos;asc&apos;)||(arg3 == &apos;ascending&apos;)) {
     if (_.contains(arg3, &apos;asc&apos;)) {
         sorted = _.sortBy(pairs, function(d){
                 return d[0];
@@ -588,15 +587,15 @@ $(&apos;button#viz&apos;).click(function(){
     var arg2 = $(&apos;input#arg2&apos;).val();
     var arg3 = $(&apos;input#arg3&apos;).val();
     viz(arg1, arg2, arg3)
-})</code></pre><script>var code ="items = 'not loaded yet'\n\nconsole.log('lodash version:', _.VERSION)\n\n$.get('http://bigdatahci2015.github.io/data/yelp/yelp_academic_dataset_business.5000.json.lines.txt')\n    .success(function(data){        \n        var lines = data.trim().split('\\n')\n\n        // convert text lines to json arrays and save them in `items`\n        items = _.map(lines, JSON.parse)\n\n        console.log('number of items loaded:', items.length)\n\n        console.log('first item', items[0])\n     })\n     .error(function(e){\n         console.error(e)\n     })\n\nfunction viz(arg1, arg2, arg3){  \n\n\n    filtered =  _.filter(items, function(d){\n        return ( d.state == arg1 && d.attributes && d.attributes.Ambience && d.attributes.Ambience[arg2] )\n        }) \n    console.log('first filter', filtered[0]);\n    console.log('filtered length', _.size(filtered))\n    var groups = _.groupBy(filtered, \"stars\")\n    console.log('groups', groups)\n    var pairs = _.pairs(groups)\n    console.log('pairs', pairs)\n        \n    // TODO: sort pairs in the order specified by users\n     var sorted = [];\n    //if ((arg3 == 'asc')||(arg3 == 'ascending')) {\n    if (_.contains(arg3, 'asc')) {\n        sorted = _.sortBy(pairs, function(d){\n                return d[0];\n        });\n    }else {\n        sorted = _(_.sortBy(pairs, function(d){\n                return d[0];\n        })).reverse().value();\n    }\n\n    // define a template string\n    var tplString = '<g transform=\"translate(0 ${d.y})\"> \\\n                    <text y=\"20\">${d.label}</text> \\\n                    <rect x=\"30\"   \\\n                         width=\"${d.width}\" \\\n                         height=\"20\"    \\\n                         style=\"fill:${d.color};    \\\n                                stroke-width:3; \\\n                                stroke:rgb(0,0,0)\" />   \\\n                    </g>'\n\n    // compile the string to get a template function\n    var template = _.template(tplString)\n\n    function computeX(d, i) {\n        return 0\n    }\n\n    function computeWidth(d, i) {        \n        return d[1].length*5;\n    }\n\n    function computeY(d, i) {\n        return i * 20\n    }\n\n    function computeColor(d, i) {\n        return 'red'\n    }\n\n    function computeLabel(d, i) {\n        return d[0]\n    }\n\n    \n\n    var viz = _.map(sorted, function(d, i){                \n                return {\n                    x: computeX(d, i),\n                    y: computeY(d, i),\n                    width: computeWidth(d, i),\n                    color: computeColor(d, i),\n                    label: computeLabel(d, i)\n                }\n             })\n    console.log('viz', viz)\n\n    var result = _.map(viz, function(d){\n             // invoke the compiled template function on each viz data\n             return template({d: d})\n         })\n    console.log('result', result)\n\n    $('.myviz').html('<svg width=\"100%\" height=\"100%\">' + result + '</svg>')\n}\n\n$('button#viz').click(function(){    \n    var arg1 = $('input#arg1').val();\n    var arg2 = $('input#arg2').val();\n    var arg3 = $('input#arg3').val();\n    viz(arg1, arg2, arg3)\n})"</script></p>
+})</code></pre><script>var code ="items = 'not loaded yet'\n\nconsole.log('lodash version:', _.VERSION)\n\n$.get('http://bigdatahci2015.github.io/data/yelp/yelp_academic_dataset_business.5000.json.lines.txt')\n    .success(function(data){        \n        var lines = data.trim().split('\\n')\n\n        // convert text lines to json arrays and save them in `items`\n        items = _.map(lines, JSON.parse)\n\n        console.log('number of items loaded:', items.length)\n\n        console.log('first item', items[0])\n     })\n     .error(function(e){\n         console.error(e)\n     })\n\nfunction viz(arg1, arg2, arg3){  \n\n\n    filtered =  _.filter(items, function(d){\n        return ( d.state == arg1 && d.attributes && d.attributes.Ambience && d.attributes.Ambience[arg2] )\n        }) \n    console.log('first filter', filtered[0]);\n    console.log('filtered length', _.size(filtered))\n    var groups = _.groupBy(filtered, \"stars\")\n    console.log('groups', groups)\n    var pairs = _.pairs(groups)\n    console.log('pairs', pairs)\n\n\n     var sorted = [];\n    if (_.contains(arg3, 'asc')) {\n        sorted = _.sortBy(pairs, function(d){\n                return d[0];\n        });\n    }else {\n        sorted = _(_.sortBy(pairs, function(d){\n                return d[0];\n        })).reverse().value();\n    }\n\n    // define a template string\n    var tplString = '<g transform=\"translate(0 ${d.y})\"> \\\n                    <text y=\"20\">${d.label}</text> \\\n                    <rect x=\"30\"   \\\n                         width=\"${d.width}\" \\\n                         height=\"20\"    \\\n                         style=\"fill:${d.color};    \\\n                                stroke-width:3; \\\n                                stroke:rgb(0,0,0)\" />   \\\n                    </g>'\n\n    // compile the string to get a template function\n    var template = _.template(tplString)\n\n    function computeX(d, i) {\n        return 0\n    }\n\n    function computeWidth(d, i) {        \n        return d[1].length*5;\n    }\n\n    function computeY(d, i) {\n        return i * 20\n    }\n\n    function computeColor(d, i) {\n        return 'red'\n    }\n\n    function computeLabel(d, i) {\n        return d[0]\n    }\n\n    \n\n    var viz = _.map(sorted, function(d, i){                \n                return {\n                    x: computeX(d, i),\n                    y: computeY(d, i),\n                    width: computeWidth(d, i),\n                    color: computeColor(d, i),\n                    label: computeLabel(d, i)\n                }\n             })\n    console.log('viz', viz)\n\n    var result = _.map(viz, function(d){\n             // invoke the compiled template function on each viz data\n             return template({d: d})\n         })\n    console.log('result', result)\n\n    $('.myviz').html('<svg width=\"100%\" height=\"100%\">' + result + '</svg>')\n}\n\n$('button#viz').click(function(){    \n    var arg1 = $('input#arg1').val();\n    var arg2 = $('input#arg2').val();\n    var arg3 = $('input#arg3').val();\n    viz(arg1, arg2, arg3)\n})"</script></p>
 <h1 id="authors">Authors</h1>
 <p>This UI is developed by</p>
 <ul>
-<li><a href="link%20to%20github%20account">Full name</a></li>
-<li><a href="link%20to%20github%20account">Full name</a></li>
-<li><a href="link%20to%20github%20account">Full name</a></li>
-<li><a href="link%20to%20github%20account">Full name</a></li>
-<li><a href="link%20to%20github%20account">Full name</a></li>
+<li><a href="https://github.com/karisantos" target="_blank">Kari Santos</a></li>
+<li><a href="https://github.com/hswitte" target="_blank">Heather Witte</a></li>
+<li><a href="https://github.com/ZachLamb" target="_blank">Zachary Lamb</a></li>
+<li><a href="https://github.com/fadhilfath" target="_blank">Fadhil Suhendi</a></li>
+<li><a href="https://github.com/94kazakov" target="_blank">Denis Kazakov</a></li>
 </ul>
 
                     
